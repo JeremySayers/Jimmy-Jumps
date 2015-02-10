@@ -33,7 +33,7 @@ class Player(pygame.sprite.Sprite):
         self.image.fill((155, 255, 20))
 
         self.rect = self.image.get_rect()
-        self.rect.y = screen_height
+        self.rect.y = 0
         self.rect.x = 20
 
     '''

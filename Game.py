@@ -41,7 +41,7 @@ class Game(object):
     def draw_screen(self):
         screen.fill((0, 0, 0))
         self.camera.update_player(self.player_sprite_group).draw(screen)
-        self.camera.update_platforms(self.platform_list, self.player).draw(screen)
+        self.camera.update_platforms(self.platform_list, self.player_sprite_group).draw(screen)
         self.display_fps()
         pygame.display.flip()
 
