@@ -14,7 +14,6 @@ class Camera(object):
         self.screen_height = screen_height
         self.map_width = map_width
         self.map_height = map_height
-        self.player = None
         
     def update_player(self, player_sprite_group):
         self.player_sprite_group = player_sprite_group
