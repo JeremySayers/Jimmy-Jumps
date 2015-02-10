@@ -10,8 +10,10 @@ class Map(object):
     
     platform_list = None
     background = None
-    def __init__(self):
+    def __init__(self, map_width, map_height):
         self.platform_list = pygame.sprite.Group()
+        self.map_width = map_width
+        self.map_height = map_height
         
     def update(self):
         self.platform_list.update()

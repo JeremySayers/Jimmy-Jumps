@@ -9,6 +9,7 @@ import sys
 from Player import Player
 from Platform import Platform
 from Map_01 import Map_01
+from Camera import Camera
 FPS = 120
 RESOLUTION = (800, 600)
 FULLSCREEN = False
@@ -17,13 +18,14 @@ DOUBLEBUFFER = False
 
 class Game(object):
     def __init__(self, screen):
-        self.player = Player(800, 600)
-        self.active_sprite_list = pygame.sprite.Group()
-        self.active_sprite_list.add(self.player)
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("monospace", 30)
         current_map = Map_01()
         self.platform_list = current_map.platform_list
+        self.player = Player(current_map.map_width, current_map.map_height)
+        self.player_sprite_group = pygame.sprite.Group()
+        self.player_sprite_group.add(self.player)
+        self.camera = Camera(800, 600, current_map.map_width, current_map.map_height)
         self.game_loop()
         
     def game_loop(self):
@@ -34,12 +36,12 @@ class Game(object):
             self.draw_screen()
 
     def update(self):
-        self.active_sprite_list.update(self.platform_list)
+        self.player_sprite_group.update(self.platform_list)
 
     def draw_screen(self):
         screen.fill((0, 0, 0))
-        self.active_sprite_list.draw(screen)
-        self.platform_list.draw(screen)
+        self.camera.update_player(self.player_sprite_group).draw(screen)
+        self.camera.update_platforms(self.platform_list, self.player).draw(screen)
         self.display_fps()
         pygame.display.flip()
 

@@ -10,7 +10,7 @@ from Platform import Platform
 
 class Map_01(Map):
     def __init__(self):
-        Map.__init__(self)
+        Map.__init__(self, 2400, 1200)
         
         ''' Locations and sizes of platforms (width, height, x y) ''' 
         map = [[200, 30, 270, 220],
